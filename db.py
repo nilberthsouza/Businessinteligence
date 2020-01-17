@@ -17,10 +17,12 @@ class Database:
         self.cur.execute("SELECT * FROM vendas")
         rows = self.cur.fetchall()
         return rows
+    
     def fetchHistoricos(self):
         self.cur.execute("SELECT * FROM historicos")
         rows = self.cur.fetchall()
         return rows
+    
     def fetchProdutos(self):
         self.cur.execute("SELECT * FROM produtos")
         rows = self.cur.fetchall()
@@ -45,8 +47,9 @@ class Database:
         self.cur.execute("SELECT * FROM promocao")
         rows = self.cur.fetchall()
         return rows
+    
     def inserVendas (self):
-        self.cur.execute('INSERT 
+        self.cur.execute('INSERT
     def __del__(self):
         self.conn.close()
 
