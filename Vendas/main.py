@@ -21,10 +21,10 @@ ipca = ipca.drop('numeroindiceacumulado',axis=1)
 ipca.Data = ipca.Data.map(lambda a: a.replace('/','-'))
 
 month = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
-i = 1
 
-for i in range(len(month)+1):
-    ipca.Data = ipca.Data.map(lambda mon: mon.replace(str(month[i-1]),str('1-'+str(i))))
+for i in range(len(month)):
+    ipca.Data = ipca.Data.map(lambda mon: mon.replace(str(month[i]),str('1-'+str(i+1))))
+    print(i)
     i+=1
 
 ipca.Data = pd.to_datetime(ipca['Data'],format='%d-%m-%Y',errors='coerce')
@@ -34,23 +34,10 @@ def get_year(dt):
 
 ipca['Year'] = ipca['Data'].map(get_year)
 
+ipcadata = ipca[ipca['Year'] < 2011].index
+ipca.drop(ipcadata, inplace=True)
 
-ipca_rem = ipca.loc[(ipca['Year'] <2011) & (ipca['Year'] > 2013)]
-
-ipca = ipca_rem.drop(ipca_rem.index)
+ipcadata2 = ipca[ipca['Year'] > 2013].index
+ipca.drop(ipcadata2, inplace=True)
 
 print(ipca.head())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
