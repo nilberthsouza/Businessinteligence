@@ -25,9 +25,6 @@ dados['Vendedor']= dados['Vendedor'].map(lambda a: a.replace('_##',''))
 df_merged = pd.merge(dados,dproduto,on="ID Produto",how="right")
 
 
-#sales number, counting occurrence of Product ID
-print(len(dados['ID Produto']))
-
 #number of sales per seller and build chart
 plt.subplot2grid((3,3),(0,0))
 dados['Vendedor'].value_counts(normalize=True).plot(kind="bar")
@@ -56,17 +53,17 @@ plt.title("Produto 1 por Vendedor")
 
 
 #Graph of total sales of product 2 by salesperson
-plt.subplot2grid((3,3),(1,1))
+plt.subplot2grid((3,3),(2,1))
 df_merged.Vendedor[df_merged['ID Produto'] == 2].value_counts(normalize=True).plot(kind='bar')
 plt.title("Produto 2 por Vendedor")
 
 #Graph of total sales of product 3 by salesperson
-plt.subplot2grid((3,3),(1,0))
+plt.subplot2grid((3,3),(2,0))
 df_merged.Vendedor[df_merged['ID Produto'] == 3].value_counts(normalize=True).plot(kind='bar')
 plt.title("Produto 3 por Vendedor")
 
 #Graph of total sales of Trovato
-plt.subplot2grid((3,3),(1,2))
+plt.subplot2grid((3,3),(2,2))
 df_merged.Produto[df_merged['Vendedor'] == 'Trovato'].value_counts(normalize=True).plot(kind='bar')
 plt.title("Produtos Vendidos por Trovato")
 
