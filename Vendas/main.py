@@ -24,7 +24,6 @@ month = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'
 
 for i in range(len(month)):
     ipca.Data = ipca.Data.map(lambda mon: mon.replace(str(month[i]),str('1-'+str(i+1))))
-    print(i)
     i+=1
 
 ipca.Data = pd.to_datetime(ipca['Data'],format='%d-%m-%Y',errors='coerce')
@@ -40,4 +39,5 @@ ipca.drop(ipcadata, inplace=True)
 ipcadata2 = ipca[ipca['Year'] > 2013].index
 ipca.drop(ipcadata2, inplace=True)
 
-print(ipca.head())
+#total da venda
+
